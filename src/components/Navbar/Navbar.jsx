@@ -10,10 +10,13 @@ const Navbar = () => {
       <li>
         <MyLinks to={"/products"}> All Products</MyLinks>
       </li>
+      <li>
+        <MyLinks to={"/register"}> Register</MyLinks>
+      </li>
     </>
   );
   return (
-    <div className="bg-base-100 shadow-sm">
+    <nav className=" w-full z-50  backdrop-blur-2xl shadow-sm sticky">
       <div className="container mx-auto flex">
         <div className="navbar-start">
           <div className="dropdown">
@@ -52,7 +55,7 @@ const Navbar = () => {
           <a className="btn">Button</a>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

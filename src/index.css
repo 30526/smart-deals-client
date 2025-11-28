@@ -14,3 +14,23 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed; /* stays fixed in the viewport */
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  z-index: -1; /* behind everything */
+  pointer-events: none; /* allows clicking through */
+  background: #ffffff;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(0, 0, 0, 0.35) 1px,
+    transparent 0
+  );
+  background-size: 30px 30px;
+}
