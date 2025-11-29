@@ -5,7 +5,7 @@ import IridBG from "../../components/ReactBits/Iridescence/IridBG";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Login = () => {
-  const { signInUser } = use(AuthContext);
+  const { signInUser, socialSignIn } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,6 +23,18 @@ const Login = () => {
         console.error(error);
       });
   };
+
+  const handleSocialLogin = () => {
+    socialSignIn()
+      .then(() => {
+        toast.success("Logged in successfully!");
+        navigate(location?.state || "/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
       <div className=" md:block col-span-4 hidden">
@@ -62,6 +74,7 @@ const Login = () => {
             </button>
           </form>
           <button
+            onClick={handleSocialLogin}
             className=" hover:border-gray-400 hover:bg-gray-100
            w-full mt-3 btn bg-white text-black border-[#e5e5e5]"
           >

@@ -1,5 +1,6 @@
 import React, { use } from "react";
 import MyLinks from "../MyLinks/MyLinks";
+import { IoMdLogIn } from "react-icons/io";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthContext";
 import auth from "../../Firebase/firebase.init";
@@ -34,7 +35,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className=" w-full z-50  backdrop-blur-2xl shadow-sm sticky">
+    <nav className=" w-full sticky top-0 z-50 bg-white/10 backdrop-blur-lg border-b border-white/20 shadow-sm">
       <div className="container mx-auto flex">
         <div className="navbar-start">
           <div className="dropdown">
@@ -57,7 +58,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
@@ -71,16 +72,19 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {loading ? (
-            <button className="btn">
+            <button className="btn button-primary">
+              <IoMdLogIn size={20} />{" "}
               <span className="loading loading-dots loading-xl"></span>
             </button>
           ) : user ? (
-            <button onClick={handleSignOut} className="btn">
-              Sign Out
+            <button onClick={handleSignOut} className="btn button-primary">
+              <IoMdLogIn size={20} /> Sign Out
             </button>
           ) : (
             <MyLinks to={"/login"}>
-              <button className="btn">Login</button>
+              <button className="btn button-primary">
+                <IoMdLogIn size={20} /> Login
+              </button>
             </MyLinks>
           )}
         </div>

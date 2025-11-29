@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: light --default;
@@ -5,8 +6,13 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: blue;
+  --color-primary: #001931;
   --color-secondary: teal;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .gradient-primary {
@@ -34,3 +40,13 @@ body::before {
   );
   background-size: 30px 30px;
 }
+
+.button-primary {
+  @apply bg-gradient-to-r from-[#632ee3] to-[#9f62f2] text-white border-none;
+}
+.button-primary:hover {
+  @apply bg-gradient-to-r from-[#9f62e3] to-[#7a45e8] text-white;
+}
+
+
+
