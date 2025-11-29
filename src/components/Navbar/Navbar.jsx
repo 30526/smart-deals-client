@@ -35,8 +35,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className=" w-full sticky top-0 z-50 bg-white/10 backdrop-blur-lg border-b border-white/20 shadow-sm">
-      <div className="container mx-auto flex">
+    <nav className="absolute z-100 right-0 left-0 top-4 backdrop-blur-xl border border-white container mx-auto rounded-full">
+      <div className="  flex px-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -70,7 +70,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end pr-4">
           {loading ? (
             <button className="btn button-primary">
               <IoMdLogIn size={20} />{" "}

@@ -20,11 +20,14 @@ const HeroBanner = () => {
           </p>
           <div className="join">
             <div>
-              <label className="input join-item rounded-l-full border-none md:w-80">
+              <label className="input join-item rounded-l-full border-none md:w-96">
                 <input type="search" placeholder="Search Your Product Here" />
               </label>
             </div>
-            <button className="btn button-primary join-item rounded-r-full border-none">
+            <button
+              className="btn button-primary join-item rounded-r-full 
+            border-none"
+            >
               <IoIosSearch size={25} />
             </button>
           </div>
@@ -35,7 +38,10 @@ const HeroBanner = () => {
                 Watch All Products
               </button>
             </Link>
-            <button className="btn border-[#9f62f2] bg-transparent gradient-primary  font-medium">
+            <button
+              className="btn border-[#9f62f2] bg-transparent 
+            gradient-primary  font-medium backdrop-blur-3xl"
+            >
               Post an product
             </button>
           </div>
