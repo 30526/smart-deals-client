@@ -4,6 +4,8 @@ import RootLayout from "../Layout/RootLayout";
 import AllProducts from "../components/AllProducts/AllProducts";
 import Login from "../Pages/Login/Login";
 import RegisterPage from "../Pages/Register/RegisterPage";
+import MyProducts from "../Pages/MyProducts/MyProducts";
+import MyBids from "../Pages/MyBids/MyBids";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: "products",
         Component: AllProducts,
+      },
+      {
+        path: "myProducts",
+        element: <MyProducts></MyProducts>,
+      },
+      {
+        path: "myBids",
+        element: <MyBids></MyBids>,
       },
     ],
   },

@@ -1,7 +1,22 @@
-import React from "react";
+import React, { use } from "react";
 import MyLinks from "../MyLinks/MyLinks";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../Context/AuthContext";
+import auth from "../../Firebase/firebase.init";
 
 const Navbar = () => {
+  const { user, loading, signOutUser } = use(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser(auth)
+      .then(() => {
+        toast.success("Signed out successfully!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
   const links = (
     <>
       <li>
@@ -13,6 +28,16 @@ const Navbar = () => {
       <li>
         <MyLinks to={"/register"}> Register</MyLinks>
       </li>
+      {user && (
+        <>
+          <li>
+            <MyLinks to={"/myProducts"}> My Products</MyLinks>
+          </li>
+          <li>
+            <MyLinks to={"/myBids"}> My Bids</MyLinks>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -52,7 +77,19 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {loading ? (
+            <button className="btn">
+              <span className="loading loading-dots loading-xl"></span>
+            </button>
+          ) : user ? (
+            <button onClick={handleSignOut} className="btn">
+              Sign Out
+            </button>
+          ) : (
+            <MyLinks to={"/login"}>
+              <button className="btn">Login</button>
+            </MyLinks>
+          )}
         </div>
       </div>
     </nav>
