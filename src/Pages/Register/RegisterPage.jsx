@@ -1,12 +1,15 @@
 import React, { use, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import auth from "../../Firebase/firebase.init";
 
 const RegisterPage = () => {
   const { createUser, socialSignIn } = use(AuthContext);
   const [agreed, setAgreed] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,28 +30,74 @@ const RegisterPage = () => {
     }
 
     createUser(email, password)
-      .then(() => {
+      .then((result) => {
         toast.success("Account created successfully!");
         e.target.reset();
         setAgreed(false);
+
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const image = result.user.photoURL;
+        const newUser = {
+          name,
+          email,
+          image,
+        };
+
+        // send user to database
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
       })
       .catch((error) => {
         toast.error(error.message);
       });
+    navigate(location?.state || "/");
   };
 
   const handleSocialSignIn = () => {
     socialSignIn(auth)
-      .then(() => {
+      .then((result) => {
+        const name = result.user.displayName;
+        const email = result.user.email;
+        const image = result.user.photoURL;
+        const newUser = {
+          name,
+          email,
+          image,
+        };
+
+        // send user to database
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+
         toast.success("Logged in successfully!");
       })
       .catch((error) => {
         toast.error(error.message);
       });
+    navigate(location?.state || "/");
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-6 border min-h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
       <div className="hidden md:block col-span-4">
         <img
           className="h-full object-cover"

@@ -1,11 +1,13 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import IridBG from "../../components/ReactBits/Iridescence/IridBG";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Login = () => {
   const { signInUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,17 +17,18 @@ const Login = () => {
       .then(() => {
         toast.success("Logged in successfully!");
         e.target.reset();
+        navigate(location?.state || "/");
       })
       .catch((error) => {
         console.error(error);
       });
   };
   return (
-    <div className="grid grid-cols-1 md:grid-cols-6 border min-h-screen">
+    <div className="grid grid-cols-1 md:grid-cols-6  min-h-screen">
       <div className=" md:block col-span-4 hidden">
         <IridBG />
       </div>
-      <div className="border flex col-span-2 w-full justify-center items-center bg-white">
+      <div className=" flex col-span-2 w-full justify-center items-center bg-white">
         <div className="max-w-md w-full p-8">
           <Link to={"/"}>
             <h2 className="text-3xl cursor-pointer font-bold text-center">
@@ -96,6 +99,7 @@ const Login = () => {
             Don't have an account?{" "}
             <Link
               to="/register"
+              state={location?.state}
               className="text-purple-600 font-medium hover:underline"
             >
               Register
