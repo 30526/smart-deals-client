@@ -15,6 +15,9 @@ body {
   font-optical-sizing: auto;
 }
 
+.gradient {
+  background: linear-gradient(90deg, #632ee3, #9f62f2);
+}
 .gradient-primary {
   background: linear-gradient(90deg, #632ee3, #9f62f2);
   -webkit-background-clip: text;
@@ -29,7 +32,7 @@ body {
 body::before {
   content: "";
   position: fixed; /* stays fixed in the viewport */
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  inset: 0; top:10px; /*right:0; bottom:0; left:0 */
   z-index: -1; /* behind everything */
   pointer-events: none; /* allows clicking through */
   background: #ffffff;
@@ -47,6 +50,3 @@ body::before {
 .button-primary:hover {
   @apply bg-gradient-to-r from-[#9f62e3] to-[#7a45e8] text-white;
 }
-
-
-

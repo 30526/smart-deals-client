@@ -4,9 +4,11 @@ import { IoMdLogIn } from "react-icons/io";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthContext";
 import auth from "../../Firebase/firebase.init";
+import { useLocation } from "react-router";
 
 const Navbar = () => {
   const { user, loading, signOutUser } = use(AuthContext);
+  const location = useLocation();
 
   const handleSignOut = () => {
     signOutUser(auth)
@@ -35,7 +37,14 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="absolute z-100 right-0 left-0 top-4 backdrop-blur-xl border border-white container mx-auto rounded-full">
+    <nav
+      className={`absolute z-100 right-0 left-0 top-4 backdrop-blur-xl border container mx-auto rounded-full
+        ${
+          location.pathname != "/"
+            ? "bg-white border-[#9f62f2] shadow-md"
+            : "border-white/60 "
+        }`}
+    >
       <div className="  flex px-4">
         <div className="navbar-start">
           <div className="dropdown">
