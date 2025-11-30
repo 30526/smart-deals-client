@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, useLoaderData } from "react-router";
 
 import { ArrowLeft } from "lucide-react";
+import MakeBid from "../../components/Bids/MakeBid";
 
 const ProductDetails = () => {
+  const openModalRef = useRef(null);
+
+  const handleModalBtn = () => {
+    openModalRef.current.showModal();
+  };
+
   const product = useLoaderData();
   const {
     image,
@@ -129,11 +136,20 @@ const ProductDetails = () => {
         </div>
         {/* Buy Button */}
         <div className="flex items-end">
-          <button className="w-full button-primary py-3 cursor-pointer rounded-xl text-lg font-semibold">
+          <button
+            onClick={handleModalBtn}
+            className="w-full button-primary py-3 cursor-pointer rounded-xl text-lg font-semibold"
+          >
             I Want Buy This Product
           </button>
         </div>
       </div>
+
+      <MakeBid
+        product={product}
+        price_max={price_max}
+        openModalRef={openModalRef}
+      ></MakeBid>
     </div>
   );
 };

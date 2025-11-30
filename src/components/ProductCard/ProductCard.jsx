@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
           <Link to={`/productDetails/${_id}`}>
             {" "}
             <button
-              className="w-full py-2 rounded-md border border-[#9f62f2] text-sm font-medium text-white gradient 
+              className="w-full py-2 rounded-md border border-[#9f62f2] text-sm font-medium text-white button-primary 
             cursor-pointer transition"
               aria-label={`View details for ${title}`}
             >

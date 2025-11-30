@@ -50,3 +50,5 @@ body::before {
 .button-primary:hover {
   @apply bg-gradient-to-r from-[#9f62e3] to-[#7a45e8] text-white;
 }
+
+
