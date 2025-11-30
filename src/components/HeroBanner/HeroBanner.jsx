@@ -7,7 +7,7 @@ const HeroBanner = () => {
   return (
     <div className=" grid relative h-150 md:w-full overflow-hidden">
       <IridBG />
-      <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-center items-center bg-white/30">
+      <div className="absolute w-full h-full top-0 left-0 flex flex-col justify-center items-center ">
         <div className="flex flex-col gap-6 justify-center items-center">
           <h1 className="text-4xl md:text-6xl font-bold text-primary text-center">
             {" "}
@@ -40,9 +40,9 @@ const HeroBanner = () => {
             </Link>
             <button
               className="btn border-[#9f62f2] bg-transparent 
-            gradient-primary  font-medium backdrop-blur-3xl"
+            text-[#9f62f2]  font-semibold backdrop-blur-xl"
             >
-              Post an product
+              Post an Product
             </button>
           </div>
         </div>

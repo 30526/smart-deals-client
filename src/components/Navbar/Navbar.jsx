@@ -38,14 +38,15 @@ const Navbar = () => {
   );
   return (
     <nav
-      className={`absolute z-100 right-0 left-0 top-4 backdrop-blur-xl border container mx-auto rounded-full
+      className={`absolute z-100 right-0 left-0 top-4 backdrop-blur-xl border md:w-5xl  
+          mx-auto rounded-full
         ${
           location.pathname != "/"
             ? "bg-white border-[#9f62f2] shadow-md"
             : "border-white/60 "
         }`}
     >
-      <div className="  flex px-4">
+      <div className="  flex px-8">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -72,27 +73,37 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl font-bold">
+          <a className="cursor-pointer text-xl font-bold">
             Smart<span className="gradient-primary">Deals</span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1 text-[16px]">{links}</ul>
         </div>
-        <div className="navbar-end pr-4">
+        <div className="navbar-end">
           {loading ? (
-            <button className="btn button-primary">
+            <button className="flex gap-1 items-center py-1 px-4 rounded-full button-primary font-medium">
               <IoMdLogIn size={20} />{" "}
               <span className="loading loading-dots loading-xl"></span>
             </button>
           ) : user ? (
-            <button onClick={handleSignOut} className="btn button-primary">
-              <IoMdLogIn size={20} /> Sign Out
-            </button>
+            <>
+              <div className="avatar avatar-online mr-2">
+                <div className="w-8 rounded-full">
+                  <img src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp" />
+                </div>
+              </div>
+              <button
+                onClick={handleSignOut}
+                className=" flex gap-1 items-center py-1 px-4 rounded-full button-primary font-medium"
+              >
+                <IoMdLogIn size={20} /> Log Out
+              </button>
+            </>
           ) : (
             <MyLinks to={"/login"}>
-              <button className="btn button-primary">
-                <IoMdLogIn size={20} /> Login
+              <button className="flex gap-1 items-center py-1 px-4 rounded-full button-primary font-medium">
+                <IoMdLogIn size={20} /> Log In
               </button>
             </MyLinks>
           )}

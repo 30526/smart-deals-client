@@ -1,5 +1,6 @@
 // ProductCard.jsx
 import React from "react";
+import { Link } from "react-router";
 
 /**
  * Props:
@@ -10,10 +11,10 @@ import React from "react";
  *  - onView: function (optional) -> callback for View Details button
  */
 const ProductCard = ({ product }) => {
-  const { image, title, price_min, price_max, onView } = product;
+  const { _id, image, title, price_min, price_max } = product;
 
   return (
-    <div className="max-w-lg bg-white rounded-lg shadow-sm p-4">
+    <div className="max-w-lg bg-white rounded-lg shadow-sm p-4 border border-[#9f62f2]/50">
       <div className="w-full aspect-square rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
         {image ? (
           <img src={image} alt={title} className="object-cover w-full h-full" />
@@ -35,13 +36,16 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="mt-4">
-          <button
-            onClick={onView}
-            className="w-full py-2 rounded-md border border-[#9f62f2] text-sm font-medium text-[#6b21a8] bg-transparent hover:bg-[#faf5ff] transition"
-            aria-label={`View details for ${title}`}
-          >
-            View Details
-          </button>
+          <Link to={`/productDetails/${_id}`}>
+            {" "}
+            <button
+              className="w-full py-2 rounded-md border border-[#9f62f2] text-sm font-medium text-white gradient 
+            cursor-pointer transition"
+              aria-label={`View details for ${title}`}
+            >
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
