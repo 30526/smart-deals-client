@@ -1,10 +1,8 @@
-import React, { use } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Context/AuthContext";
 
-const MakeBid = ({ openModalRef, price_max, product }) => {
+const MakeBid = ({ openModalRef, price_max, product, user, setBids, bids }) => {
   const { _id: productId } = product;
-  const { user } = use(AuthContext);
 
   const handleBidSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +17,7 @@ const MakeBid = ({ openModalRef, price_max, product }) => {
       buyer_name: name,
       buyer_email: email,
       bid_price: price,
+      buyer_img: user.photoURL,
       buyer_contact: contact,
       status: "Pending",
     };
@@ -39,13 +38,17 @@ const MakeBid = ({ openModalRef, price_max, product }) => {
             position: "center",
             icon: "success",
             iconColor: "#9f62f2",
-            border: "1px solid #9f62f2",
             color: "#001931",
             background: "white",
             title: "Your bid has been Placed",
             showConfirmButton: false,
             timer: 2000,
           });
+          // add new bid to the state
+          newBid._id = data.insertedId;
+          const newBids = [...bids, newBid];
+          newBids.sort((a, b) => b.bid_price - a.bid_price);
+          setBids(newBids);
         }
       });
   };
