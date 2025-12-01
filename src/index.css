@@ -31,17 +31,47 @@ body {
 
 body::before {
   content: "";
-  position: fixed; /* stays fixed in the viewport */
-  inset: 0; top:10px; /*right:0; bottom:0; left:0 */
-  z-index: -1; /* behind everything */
-  pointer-events: none; /* allows clicking through */
-  background: #ffffff;
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(0, 0, 0, 0.35) 1px,
-    transparent 0
-  );
-  background-size: 30px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: linear-gradient(to right, #e7e5e4 1px, transparent 1px),
+    linear-gradient(to bottom, #e7e5e4 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 0;
+  mask-image: repeating-linear-gradient(
+      to right,
+      black 0px,
+      black 3px,
+      transparent 3px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      black 0px,
+      black 3px,
+      transparent 3px,
+      transparent 8px
+    );
+  -webkit-mask-image: repeating-linear-gradient(
+      to right,
+      black 0px,
+      black 3px,
+      transparent 3px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      black 0px,
+      black 3px,
+      transparent 3px,
+      transparent 8px
+    );
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+  pointer-events: none; /* Allows clicks to pass through */
 }
 
 .button-primary {
@@ -50,5 +80,3 @@ body::before {
 .button-primary:hover {
   @apply bg-gradient-to-r from-[#9f62e3] to-[#7a45e8] text-white;
 }
-
-

@@ -90,7 +90,7 @@ const Navbar = () => {
             <>
               <div className="avatar avatar-online mr-2">
                 <div className="w-8 rounded-full">
-                  <img src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp" />
+                  <img src={user.photoURL} />
                 </div>
               </div>
               <button
