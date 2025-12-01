@@ -1,6 +1,7 @@
 // ProductCard.jsx
 import React from "react";
 import { Link } from "react-router";
+import IridBG from "../ReactBits/Iridescence/IridBG";
 
 /**
  * Props:
@@ -14,13 +15,14 @@ const ProductCard = ({ product }) => {
   const { _id, image, title, price_min, price_max } = product;
 
   return (
-    <div className="max-w-lg bg-white rounded-lg shadow-sm p-4 border border-[#9f62f2]/50">
+    <div className="max-w-lg bg-white rounded-lg p-4 border border-[#9f62f2]/50">
       <div className="w-full aspect-square rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
-        {image ? (
+        {/* {image ? (
           <img src={image} alt={title} className="object-cover w-full h-full" />
         ) : (
           <div className="w-3/4 h-3/4 bg-gray-300 rounded-md" />
-        )}
+        )} */}
+        <IridBG></IridBG>
       </div>
 
       {/* content */}
